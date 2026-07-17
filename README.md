@@ -32,4 +32,23 @@ It provides employees with an easy way to submit and track IT support tickets, w
 ## 📂 Project Structure
 
 
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/thabang56R/Deskflow-Ticket-Service-Request-Portal.git
+cd Deskflow-Ticket-Service-Request-Portal
+
+2. Install dependencies
+
+cd client
+npm install
+
+👨‍💻 Author
+Created by Thabang Rakeng  
+📧 support@deskflow.com
+📞 +27 11 123 4567
+
 
