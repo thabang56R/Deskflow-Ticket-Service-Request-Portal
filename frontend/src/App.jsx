@@ -17,15 +17,26 @@ const AppContent = ({ user, setUser }) => {
   const { darkMode } = useTheme();
 
   return (
-    <div className={`d-flex flex-column min-vh-100 ${darkMode ? "bg-dark text-light" : "bg-light text-dark"}`}>
+    <div
+      className={`d-flex flex-column min-vh-100 ${
+        darkMode ? "bg-dark text-light" : "bg-light text-dark"
+      }`}
+    >
+      {/* Top navigation bar */}
       <Navbar user={user} setUser={setUser} />
+
+      {/* Main content area */}
       <div className="container flex-grow-1 mt-4">
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
+
+          {/* Static pages */}
           <Route path="/help" element={<Help />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/contact" element={<Contact />} />
+
+          {/* Role-based dashboards */}
           <Route
             path="/employee"
             element={
@@ -42,6 +53,8 @@ const AppContent = ({ user, setUser }) => {
               </ProtectedRoute>
             }
           />
+
+          {/* Profile page */}
           <Route
             path="/profile"
             element={
@@ -52,6 +65,8 @@ const AppContent = ({ user, setUser }) => {
           />
         </Routes>
       </div>
+
+      {/* Footer with links */}
       <Footer />
     </div>
   );
@@ -70,6 +85,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 

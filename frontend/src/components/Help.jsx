@@ -42,7 +42,7 @@ const Help = () => {
           <Card.Title>Need more help?</Card.Title>
           <Card.Text>
             Contact IT support at <strong>support@deskflow.com</strong> or call
-            <strong> +27 11 123 4567</strong>. 
+            <strong> +27 11 123 4567</strong>.
           </Card.Text>
         </Card.Body>
       </Card>
@@ -51,3 +51,4 @@ const Help = () => {
 };
 
 export default Help;
+
