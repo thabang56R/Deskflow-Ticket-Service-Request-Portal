@@ -1,6 +1,6 @@
-﻿# DeskFlow 🖥️
+# DeskFlow 🖥️
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](ca://s?q=Show_build_status_badge)
+[![CI](https://github.com/thabang56R/Deskflow-Ticket-Service-Request-Portal/actions/workflows/ci.yml/badge.svg)](https://github.com/thabang56R/Deskflow-Ticket-Service-Request-Portal/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](ca://s?q=Show_license_information)
 [![React](https://img.shields.io/badge/Frontend-React-blue)](ca://s?q=Tell_me_more_about_React)
 [![Node.js](https://img.shields.io/badge/Backend-Node.js-green)](ca://s?q=Tell_me_more_about_Node.js)
@@ -31,3 +31,37 @@ It provides employees with an easy way to submit and track IT support tickets, w
 
 ## 📂 Project Structure
 
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/thabang56R/Deskflow-Ticket-Service-Request-Portal.git
+cd Deskflow-Ticket-Service-Request-Portal
+---
+
+### 2. Install dependencies
+
+---
+
+
+cd client
+npm install
+
+👨‍💻 Author
+Created by Thabang Rakeng  
+📧 support@deskflow.com
+📞 +27 11 123 4567
+
+---
+
+📜 License
+This project is licensed under the MIT License
+
+---
+
+✨ This single file now includes your **CI workflow badge**, tech stack badges, setup guide, and deployment instructions.  
+
+Would you like me to also generate a **`render.yaml` file** so Render automatically applies the rewrite rules and build settings without needing to configure them manually in the dashboard?
