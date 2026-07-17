@@ -94,7 +94,7 @@ const Landing = () => {
             {/* Right: Text Content */}
             <Col lg={6} className="fade-in-delay">
               <h1 className={`fw-bold display-2 mb-3 glow-text ${darkMode ? "text-light" : "text-dark"}`}>
-                DeskFlow
+                
               </h1>
               <p className={`lead mb-4 ${darkMode ? "text-secondary" : "text-muted"}`}>
                 A modern, secure, and responsive internal ticketing system designed for fast issue resolution and seamless collaboration.
