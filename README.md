@@ -1,4 +1,3 @@
-
 # DeskFlow 🖥️
 
 [![CI](https://github.com/thabang56R/Deskflow-Ticket-Service-Request-Portal/actions/workflows/ci.yml/badge.svg)](https://github.com/thabang56R/Deskflow-Ticket-Service-Request-Portal/actions/workflows/ci.yml)
@@ -31,5 +30,6 @@ It provides employees with an easy way to submit and track IT support tickets, w
 ---
 
 ## 📂 Project Structure
+
 
 
