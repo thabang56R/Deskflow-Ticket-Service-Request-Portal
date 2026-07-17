@@ -1,6 +1,7 @@
-﻿# DeskFlow 🖥️
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](ca://s?q=Show_build_status_badge)
+# DeskFlow 🖥️
+
+[![CI](https://github.com/thabang56R/Deskflow-Ticket-Service-Request-Portal/actions/workflows/ci.yml/badge.svg)](https://github.com/thabang56R/Deskflow-Ticket-Service-Request-Portal/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](ca://s?q=Show_license_information)
 [![React](https://img.shields.io/badge/Frontend-React-blue)](ca://s?q=Tell_me_more_about_React)
 [![Node.js](https://img.shields.io/badge/Backend-Node.js-green)](ca://s?q=Tell_me_more_about_Node.js)
@@ -30,4 +31,5 @@ It provides employees with an easy way to submit and track IT support tickets, w
 ---
 
 ## 📂 Project Structure
+
 
