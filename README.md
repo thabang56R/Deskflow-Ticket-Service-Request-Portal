@@ -62,8 +62,6 @@ This project is licensed under the MIT License
 
 ---
 
----
-
 ✨ This single file now includes your **CI workflow badge**, tech stack badges, setup guide, and deployment instructions.  
 
 Would you like me to also generate a **`render.yaml` file** so Render automatically applies the rewrite rules and build settings without needing to configure them manually in the dashboard?
