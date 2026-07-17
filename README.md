@@ -41,7 +41,8 @@ It provides employees with an easy way to submit and track IT support tickets, w
 git clone https://github.com/thabang56R/Deskflow-Ticket-Service-Request-Portal.git
 cd Deskflow-Ticket-Service-Request-Portal
 
-2. Install dependencies
+### 2. Install dependencies
+
 
 cd client
 npm install
