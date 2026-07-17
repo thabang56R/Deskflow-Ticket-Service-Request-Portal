@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://deskflow-ticket-service-request-portal-1.onrender.com",
+  baseURL:
+    process.env.NODE_ENV === "production"
+      ? "https://deskflow-ticket-service-request-portal-1.onrender.com/api"
+      : "http://localhost:5000/api", // local backend
 });
 
 // Attach token automatically
@@ -14,3 +17,5 @@ api.interceptors.request.use((config) => {
 });
 
 export default api;
+
+
