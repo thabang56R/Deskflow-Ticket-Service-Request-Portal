@@ -1,68 +1,70 @@
 import React, { useEffect, useState } from "react";
-import { Table, Form, Badge } from "react-bootstrap";
+import { Table, Form } from "react-bootstrap";
 import api from "../services/api";
 
-const AdminDashboard = () => {
+const TicketList = () => {
   const [tickets, setTickets] = useState([]);
 
   useEffect(() => {
-    api.get("/tickets").then((res) => setTickets(res.data));
+    const fetchTickets = async () => {
+      try {
+        const { data } = await api.get("/tickets"); // admin route
+        setTickets(data);
+      } catch (err) {
+        console.error("Error fetching tickets:", err);
+      }
+    };
+    fetchTickets();
   }, []);
 
-  const updateStatus = async (id, status) => {
-    await api.put(`/tickets/${id}`, { status });
-    setTickets((prev) =>
-      prev.map((t) => (t._id === id ? { ...t, status } : t))
-    );
-  };
-
-  const statusColor = (status) => {
-    switch (status) {
-      case "Open": return "danger";
-      case "In Progress": return "warning";
-      case "Resolved": return "success";
-      default: return "secondary";
+  const handlePriorityChange = async (id, newPriority) => {
+    try {
+      const { data } = await api.put(`/tickets/${id}/priority`, { priority: newPriority });
+      setTickets((prev) =>
+        prev.map((t) => (t._id === id ? { ...t, priority: data.priority } : t))
+      );
+    } catch (err) {
+      console.error("Error updating priority:", err);
     }
   };
 
   return (
-    <div>
-      <h2 className="mb-4">Admin Dashboard</h2>
-      <Table striped bordered hover responsive className="shadow-sm">
-        <thead className="table-dark">
-          <tr>
-            <th>Title</th>
-            <th>User</th>
-            <th>Status</th>
-            <th>Priority</th>
-            <th>Update</th>
+    <Table striped bordered hover responsive>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Priority</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        {tickets.map((ticket) => (
+          <tr key={ticket._id}>
+            <td>{ticket.title}</td>
+            <td>{ticket.description}</td>
+            <td>{ticket.status}</td>
+            <td>
+              <Form.Select
+                value={ticket.priority}
+                onChange={(e) => handlePriorityChange(ticket._id, e.target.value)}
+              >
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Critical">Critical</option>
+              </Form.Select>
+            </td>
+            <td>{new Date(ticket.createdAt).toLocaleString()}</td>
           </tr>
-        </thead>
-        <tbody>
-          {tickets.map((ticket) => (
-            <tr key={ticket._id}>
-              <td>{ticket.title}</td>
-              <td>{ticket.user?.name || "N/A"}</td>
-              <td><Badge bg={statusColor(ticket.status)}>{ticket.status}</Badge></td>
-              <td>{ticket.priority}</td>
-              <td>
-                <Form.Select
-                  value={ticket.status}
-                  onChange={(e) => updateStatus(ticket._id, e.target.value)}
-                >
-                  <option value="Open">Open</option>
-                  <option value="In Progress">In Progress</option>
-                  <option value="Resolved">Resolved</option>
-                </Form.Select>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </div>
+        ))}
+      </tbody>
+    </Table>
   );
 };
 
-export default AdminDashboard;
+export default TicketList;
+
 
 
