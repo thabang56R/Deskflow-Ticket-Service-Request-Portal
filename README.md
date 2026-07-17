@@ -40,8 +40,11 @@ It provides employees with an easy way to submit and track IT support tickets, w
 ```bash
 git clone https://github.com/thabang56R/Deskflow-Ticket-Service-Request-Portal.git
 cd Deskflow-Ticket-Service-Request-Portal
+---
 
 ### 2. Install dependencies
+
+---
 
 
 cd client
@@ -52,4 +55,15 @@ Created by Thabang Rakeng
 📧 support@deskflow.com
 📞 +27 11 123 4567
 
+---
 
+📜 License
+This project is licensed under the MIT License
+
+---
+
+---
+
+✨ This single file now includes your **CI workflow badge**, tech stack badges, setup guide, and deployment instructions.  
+
+Would you like me to also generate a **`render.yaml` file** so Render automatically applies the rewrite rules and build settings without needing to configure them manually in the dashboard?
