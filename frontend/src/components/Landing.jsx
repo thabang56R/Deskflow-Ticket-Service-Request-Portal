@@ -84,7 +84,7 @@ const Landing = () => {
             {/* Left: Real Photo */}
             <Col lg={6} className="fade-in">
               <img
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" 
+                src="https://images.unsplash.com/photo-1781246081182-b8e658662ebd?q=80&w=1064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                 alt="Modern office teamwork"
                 className="hero-img"
               />
