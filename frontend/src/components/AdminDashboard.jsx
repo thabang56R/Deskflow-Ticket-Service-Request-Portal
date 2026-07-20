@@ -10,9 +10,11 @@ const TicketList = () => {
       try {
         // ✅ Admin route: fetch all tickets
         const { data } = await api.get("/tickets");
-        setTickets(data);
+        // Defensive check: ensure data is an array
+        setTickets(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error("Error fetching tickets:", err);
+        setTickets([]); // fallback
       }
     };
     fetchTickets();
@@ -54,42 +56,44 @@ const TicketList = () => {
         </tr>
       </thead>
       <tbody>
-        {tickets.map((ticket) => (
-          <tr key={ticket._id}>
-            <td>{ticket.title}</td>
-            <td>{ticket.description}</td>
-            <td>
-              {/* ✅ Admin can now change status */}
-              <Form.Select
-                value={ticket.status}
-                onChange={(e) => handleStatusChange(ticket._id, e.target.value)}
-              >
-                <option value="Open">Open</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Resolved">Resolved</option>
-                <option value="Closed">Closed</option>
-              </Form.Select>
-            </td>
-            <td>
-              <Form.Select
-                value={ticket.priority}
-                onChange={(e) => handlePriorityChange(ticket._id, e.target.value)}
-              >
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-                <option value="Critical">Critical</option>
-              </Form.Select>
-            </td>
-            <td>{new Date(ticket.createdAt).toLocaleString()}</td>
-          </tr>
-        ))}
+        {Array.isArray(tickets) &&
+          tickets.map((ticket) => (
+            <tr key={ticket._id}>
+              <td>{ticket.title}</td>
+              <td>{ticket.description}</td>
+              <td>
+                {/* ✅ Admin can now change status */}
+                <Form.Select
+                  value={ticket.status}
+                  onChange={(e) => handleStatusChange(ticket._id, e.target.value)}
+                >
+                  <option value="Open">Open</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Resolved">Resolved</option>
+                  <option value="Closed">Closed</option>
+                </Form.Select>
+              </td>
+              <td>
+                <Form.Select
+                  value={ticket.priority}
+                  onChange={(e) => handlePriorityChange(ticket._id, e.target.value)}
+                >
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                  <option value="Critical">Critical</option>
+                </Form.Select>
+              </td>
+              <td>{new Date(ticket.createdAt).toLocaleString()}</td>
+            </tr>
+          ))}
       </tbody>
     </Table>
   );
 };
 
 export default TicketList;
+
 
 
 
