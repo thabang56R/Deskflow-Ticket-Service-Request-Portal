@@ -45,8 +45,8 @@ const Landing = () => {
         className="floating-navbar py-3"
         style={{
           backgroundColor: darkMode
-            ? "rgba(33, 37, 41, 0.85)"
-            : "rgba(248, 249, 250, 0.85)",
+            ? "rgba(248, 249, 250, 0.85)"
+            : "rgba(33, 37, 41, 0.85)",
         }}
         variant={darkMode ? "dark" : "light"}
       >
