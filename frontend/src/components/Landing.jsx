@@ -6,7 +6,6 @@ import { useTheme } from "../ThemeContext";
 const Landing = () => {
   const { darkMode } = useTheme();
 
-  // Smooth scroll handler
   const handleScroll = (e, targetId) => {
     e.preventDefault();
     const section = document.getElementById(targetId);
@@ -17,7 +16,6 @@ const Landing = () => {
 
   return (
     <>
-      {/* Inline CSS */}
       <style>
         {`
           html { scroll-behavior: smooth; }
@@ -83,18 +81,18 @@ const Landing = () => {
       >
         <Container>
           <Row className="landing-section text-center text-lg-start">
-            {/* Left: Hero Illustration */}
+            {/* Left: Real Photo */}
             <Col lg={6} className="fade-in">
               <img
-                src="https://copilot.microsoft.com/th/id/BCO.4ef73946-dba5-4c14-9ec3-2a20ec1ea09f.png"
-                alt="DeskFlow Hero Illustration"
+                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" 
+                alt="Modern office teamwork"
                 className="hero-img"
               />
             </Col>
             {/* Right: Text Content */}
             <Col lg={6} className="fade-in-delay">
               <h1 className={`fw-bold display-2 mb-3 glow-text ${darkMode ? "text-light" : "text-dark"}`}>
-                
+                DeskFlow
               </h1>
               <p className={`lead mb-4 ${darkMode ? "text-secondary" : "text-muted"}`}>
                 A modern, secure, and responsive internal ticketing system designed for fast issue resolution and seamless collaboration.
@@ -116,7 +114,7 @@ const Landing = () => {
         </Container>
       </div>
 
-      {/* About Section */}
+      {/* About Section with real photos */}
       <section id="about">
         <Container className="text-center">
           <h2 className="fw-bold mb-4">About DeskFlow</h2>
@@ -125,26 +123,31 @@ const Landing = () => {
           </p>
           <Row>
             <Col md={4}>
+              <img
+                src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Secure server"
+                className="hero-img mb-3"
+              />
               <h5 className="fw-bold">🔒 Secure & Reliable</h5>
               <p>Enterprise‑grade authentication, encrypted data storage, and role‑based access ensure your information stays safe.</p>
             </Col>
             <Col md={4}>
+              <img
+                src="https://plus.unsplash.com/premium_photo-1661589125335-7d6c29073643?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Team collaboration"
+                className="hero-img mb-3"
+              />
               <h5 className="fw-bold">⚡ Real‑Time Collaboration</h5>
               <p>Employees and admins work together seamlessly with instant notifications, live updates, and integrated messaging.</p>
             </Col>
             <Col md={4}>
+              <img
+                src="https://images.unsplash.com/photo-1556761175-4b46a572b786"
+                alt="Analytics dashboard"
+                className="hero-img mb-3"
+              />
               <h5 className="fw-bold">📊 Analytics & Insights</h5>
               <p>Track ticket trends, resolution times, and team performance with powerful dashboards and reporting tools.</p>
-            </Col>
-          </Row>
-          <Row className="mt-4">
-            <Col md={6}>
-              <h5 className="fw-bold">🌐 Responsive Design</h5>
-              <p>DeskFlow adapts to any device — desktop, tablet, or mobile — so support is always at your fingertips.</p>
-            </Col>
-            <Col md={6}>
-              <h5 className="fw-bold">🤝 Employee Empowerment</h5>
-              <p>Role‑based dashboards give employees clarity on their tickets while admins gain full control over workflows.</p>
             </Col>
           </Row>
         </Container>
@@ -165,6 +168,7 @@ const Landing = () => {
 };
 
 export default Landing;
+
 
 
 

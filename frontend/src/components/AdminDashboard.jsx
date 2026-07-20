@@ -1,82 +1,94 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Form } from "react-bootstrap";
 import api from "../services/api";
 
-const TicketList = () => {
+const AdminDashboard = () => {
   const [tickets, setTickets] = useState([]);
-  const [stats, setStats] = useState({
-    open: 0,
-    inProgress: 0,
-    resolved: 0,
-    closed: 0,
-    low: 0,
-    medium: 0,
-    high: 0,
-    critical: 0,
-  });
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchTickets = async () => {
       try {
-        // ✅ Employee route
-        const { data: ticketData } = await api.get("/tickets/my");
-        setTickets(Array.isArray(ticketData) ? ticketData : []);
-
-        // ✅ Stats route returns an object, not an array
-        const { data: statsData } = await api.get("/tickets/stats");
-        setStats(statsData || {});
+        const { data } = await api.get("/tickets");
+        setTickets(Array.isArray(data) ? data : []); // ✅ guard
       } catch (err) {
-        console.error("Error fetching data:", err);
+        console.error("Error fetching tickets:", err);
         setTickets([]);
-        setStats({});
       }
     };
-    fetchData();
+    fetchTickets();
   }, []);
 
-  return (
-    <>
-      {/* ✅ Stats summary */}
-      <div style={{ marginBottom: "1rem", fontWeight: "bold" }}>
-        <span style={{ color: "red", marginRight: "1rem" }}>Open: {stats.open}</span>
-        <span style={{ color: "orange", marginRight: "1rem" }}>In Progress: {stats.inProgress}</span>
-        <span style={{ color: "green", marginRight: "1rem" }}>Resolved: {stats.resolved}</span>
-        <span style={{ color: "gray", marginRight: "1rem" }}>Closed: {stats.closed}</span>
-        <span style={{ color: "green", marginRight: "1rem" }}>Low: {stats.low}</span>
-        <span style={{ color: "orange", marginRight: "1rem" }}>Medium: {stats.medium}</span>
-        <span style={{ color: "red", marginRight: "1rem" }}>High: {stats.high}</span>
-        <span style={{ color: "purple", marginRight: "1rem" }}>Critical: {stats.critical}</span>
-      </div>
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      const { data } = await api.put(`/tickets/${id}/status`, { status: newStatus });
+      setTickets((prev) =>
+        prev.map((t) => (t._id === id ? { ...t, status: data.status } : t))
+      );
+    } catch (err) {
+      console.error("Error updating status:", err);
+    }
+  };
 
-      {/* ✅ Tickets table */}
-      <Table striped bordered hover responsive>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Priority</th>
-            <th>Created</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Array.isArray(tickets) &&
-            tickets.map((ticket) => (
-              <tr key={ticket._id}>
-                <td>{ticket.title}</td>
-                <td>{ticket.description}</td>
-                <td>{ticket.status}</td>
-                <td>{ticket.priority}</td>
-                <td>{new Date(ticket.createdAt).toLocaleString()}</td>
-              </tr>
-            ))}
-        </tbody>
-      </Table>
-    </>
+  const handlePriorityChange = async (id, newPriority) => {
+    try {
+      const { data } = await api.put(`/tickets/${id}/priority`, { priority: newPriority });
+      setTickets((prev) =>
+        prev.map((t) => (t._id === id ? { ...t, priority: data.priority } : t))
+      );
+    } catch (err) {
+      console.error("Error updating priority:", err);
+    }
+  };
+
+  return (
+    <Table striped bordered hover responsive>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Priority</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Array.isArray(tickets) &&
+          tickets.map((ticket) => (
+            <tr key={ticket._id}>
+              <td>{ticket.title}</td>
+              <td>{ticket.description}</td>
+              <td>
+                <Form.Select
+                  value={ticket.status}
+                  onChange={(e) => handleStatusChange(ticket._id, e.target.value)}
+                >
+                  <option value="Open">Open</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Resolved">Resolved</option>
+                  <option value="Closed">Closed</option>
+                </Form.Select>
+              </td>
+              <td>
+                <Form.Select
+                  value={ticket.priority}
+                  onChange={(e) => handlePriorityChange(ticket._id, e.target.value)}
+                >
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                  <option value="Critical">Critical</option>
+                </Form.Select>
+              </td>
+              <td>{new Date(ticket.createdAt).toLocaleString()}</td>
+            </tr>
+          ))}
+      </tbody>
+    </Table>
   );
 };
 
-export default TicketList;
+export default AdminDashboard;
+
 
 
 
