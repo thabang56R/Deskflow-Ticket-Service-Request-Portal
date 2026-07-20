@@ -8,7 +8,8 @@ const TicketList = () => {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const { data } = await api.get("/tickets"); // admin route
+        // ✅ Admin route: fetch all tickets
+        const { data } = await api.get("/tickets");
         setTickets(data);
       } catch (err) {
         console.error("Error fetching tickets:", err);
@@ -17,6 +18,7 @@ const TicketList = () => {
     fetchTickets();
   }, []);
 
+  // ✅ Handle priority change
   const handlePriorityChange = async (id, newPriority) => {
     try {
       const { data } = await api.put(`/tickets/${id}/priority`, { priority: newPriority });
@@ -25,6 +27,18 @@ const TicketList = () => {
       );
     } catch (err) {
       console.error("Error updating priority:", err);
+    }
+  };
+
+  // ✅ Handle status change
+  const handleStatusChange = async (id, newStatus) => {
+    try {
+      const { data } = await api.put(`/tickets/${id}/status`, { status: newStatus });
+      setTickets((prev) =>
+        prev.map((t) => (t._id === id ? { ...t, status: data.status } : t))
+      );
+    } catch (err) {
+      console.error("Error updating status:", err);
     }
   };
 
@@ -44,7 +58,18 @@ const TicketList = () => {
           <tr key={ticket._id}>
             <td>{ticket.title}</td>
             <td>{ticket.description}</td>
-            <td>{ticket.status}</td>
+            <td>
+              {/* ✅ Admin can now change status */}
+              <Form.Select
+                value={ticket.status}
+                onChange={(e) => handleStatusChange(ticket._id, e.target.value)}
+              >
+                <option value="Open">Open</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+                <option value="Closed">Closed</option>
+              </Form.Select>
+            </td>
             <td>
               <Form.Select
                 value={ticket.priority}
@@ -65,6 +90,7 @@ const TicketList = () => {
 };
 
 export default TicketList;
+
 
 
 
