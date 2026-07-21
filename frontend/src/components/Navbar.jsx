@@ -7,7 +7,7 @@ const DeskNavbar = ({ user, setUser }) => {
   const { darkMode, toggleTheme } = useTheme();
 
   return (
-    <Navbar bg={darkMode ? "dark" : "light"} variant={darkMode ? "dark" : "light"} expand="lg" className="shadow-sm">
+   <Navbar >
       
       <Nav className="ms-auto align-items-center">
         {!user && <Nav.Link as={Link} to="/login">Login</Nav.Link>}
